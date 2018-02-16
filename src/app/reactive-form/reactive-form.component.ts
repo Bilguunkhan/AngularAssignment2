@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { EmailValidators } from './email.validators';
+import { passwordValidator } from './passwordValidator.validators';
 
 @Component({
   selector: 'app-reactive-form',
@@ -21,7 +21,7 @@ export class ReactiveFormComponent implements OnInit {
       Validators.required, 
       Validators.minLength(8)
     ])
-  }, EmailValidators.valueCheck);
+  }, passwordValidator.valueCheck);
   
 
   get currentPassword(){
