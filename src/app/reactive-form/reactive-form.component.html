@@ -1,0 +1,50 @@
+<form [formGroup]="reactiveForm" (ngSubmit)="submitForm()">
+    <label>Current Password</label>
+    <input formControlName="currentPassword" type="text" class="form-control">
+
+    <div *ngIf="currentPassword.touched && currentPassword.errors">
+        <div *ngIf="currentPassword.errors.required" class="alert alert-danger">
+            The currentPassword is required
+        </div>
+    </div>
+
+
+    <label>New Password</label>
+    <input formControlName="newPassword" type="text" class="form-control" [formGroup]="reactiveForm">
+
+    <div *ngIf="newPassword.touched && newPassword.errors">
+        <div *ngIf="newPassword.errors.required" class="alert alert-danger">
+            The newPassword is required
+        </div>
+        <div *ngIf="newPassword.errors.pattern" class="alert alert-danger">
+            The newPassword must contain at least one lowercase letter, one uppercase letter and one number
+        </div>
+        <div *ngIf="newPassword.errors.minlength" class="alert alert-danger">
+            The newPassword can't be shorter than {{ newPassword.errors.minlength.requiredLength }} characters
+        </div>
+    </div>
+
+
+    <label>Confirm New Password</label>
+    <input formControlName="confirmPassword" type="text" class="form-control" [formGroup]="reactiveForm">
+
+    <div *ngIf="confirmPassword.touched && confirmPassword.errors">
+        <div *ngIf="confirmPassword.errors.required" class="alert alert-danger">
+            The confirmPassword is required
+        </div>
+        <div *ngIf="confirmPassword.errors.valueCheck" class="alert alert-danger">
+            The confirmPassword must match the newPassword
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="alert alert-danger" *ngIf="reactiveForm.errors">
+        The data is invalid
+    </div>
+    <button class="btn btn-primary" [disabled]="!reactiveForm.valid">Submit</button>
+</form>
