@@ -16,7 +16,7 @@
         <div *ngIf="newPassword.errors.required" class="alert alert-danger">
             The newPassword is required
         </div>
-        <div *ngIf="newPassword.errors.pattern" class="alert alert-danger">
+        <div *ngIf="newPassword.errors.patternChecker" class="alert alert-danger">
             The newPassword must contain at least one lowercase letter, one uppercase letter and one number
         </div>
         <div *ngIf="newPassword.errors.minlength" class="alert alert-danger">

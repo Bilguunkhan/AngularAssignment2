@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { passwordValidator } from './passwordValidator.validators';
+import { Validator } from './Validator.validators';
 
 @Component({
   selector: 'app-reactive-form',
@@ -12,7 +12,7 @@ export class ReactiveFormComponent implements OnInit {
     'newPassword': new FormControl('', [
       Validators.required, 
       Validators.minLength(8),
-      Validators.pattern('(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}')
+      Validator.patternChecker
     ]),
     'currentPassword': new FormControl('', [
       Validators.required
@@ -21,7 +21,7 @@ export class ReactiveFormComponent implements OnInit {
       Validators.required, 
       Validators.minLength(8)
     ])
-  }, passwordValidator.valueCheck);
+  }, Validator.valueCheck);
   
 
   get currentPassword(){
@@ -39,7 +39,7 @@ export class ReactiveFormComponent implements OnInit {
   submitForm(){
     
     if(this.reactiveForm.get("currentPassword").value == "Angular2018"){
-            alert("Current password checked")
+            alert("Current Password checked")
         } else{
             alert(this.reactiveForm.errors.pattern)
         }
